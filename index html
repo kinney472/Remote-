@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Work Opportunities</title>
+  <meta name="description" content="Earn from anywhere with trusted remote work offers. Flexible, secure, and proven.">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 650px;
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2c3e50;
+      font-size: 1.8em;
+    }
+    h2 {
+      color: #34495e;
+      font-size: 1.2em;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    ul.value-list {
+      text-align: left;
+      margin: 20px auto;
+      max-width: 500px;
+      padding-left: 20px;
+    }
+    ul.value-list li {
+      margin-bottom: 10px;
+      font-size: 1em;
+      color: #2c3e50;
+    }
+    .urgency {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #e67e22;
+    }
+    .countdown {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+    .progress-label {
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #555;
+    }
+    .progress-bar {
+      margin-top: 8px;
+      width: 100%;
+      background: #ddd;
+      border-radius: 6px;
+      overflow: hidden;
+      height: 12px;
+    }
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: #3498db;
+      transition: width 1s linear;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 28px;
+      background: #3498db;
+      color: #fff;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    .cta-button:hover {
+      background: #2980b9;
+    }
+    .fallback-link {
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+    .icon {
+      font-size: 40px;
+      color: #3498db;
+      margin-bottom: 15px;
+    }
+    .offer-description {
+      margin-top: 15px;
+      font-size: 1em;
+      color: #555;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5em; }
+      h2 { font-size: 1.1em; }
+      .cta-button { width: 100%; }
+    }
+  </style>
+  <script>
+    const offers = [
+      "https://nx2bs.com/c?o=501&a=26132",
+      "https://nx2bs.com/c?o=45&a=26132",
+      "https://nx2bs.com/c?o=44&a=26132"
+    ];
+
+    function getNextOffer() {
+      let index = localStorage.getItem("offerIndex");
+      if (index === null) {
+        index = 0;
+      } else {
+        index = parseInt(index);
+        index = (index + 1) % offers.length;
+      }
+      localStorage.setItem("offerIndex", index);
+      return offers[index];
+    }
+
+    let seconds = 6;
+    let redirectLink = getNextOffer();
+
+    function countdown() {
+      const timer = document.getElementById("timer");
+      const progress = document.getElementById("progress");
+      timer.textContent = seconds;
+      progress.style.width = "0%";
+
+      const interval = setInterval(() => {
+        seconds--;
+        timer.textContent = seconds;
+        progress.style.width = ((6 - seconds) / 6) * 100 + "%";
+        if (seconds <= 0) {
+          clearInterval(interval);
+          window.location.href = redirectLink;
+        }
+      }, 1000);
+
+      // Update button and fallback link
+      const cta = document.getElementById("cta");
+      cta.href = redirectLink;
+      cta.onclick = () => {
+        clearInterval(interval);
+        window.location.href = redirectLink;
+      };
+
+      const fallback = document.getElementById("fallback");
+      fallback.href = redirectLink;
+    }
+
+    window.onload = countdown;
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- Branding Icon -->
+    <div class="icon" aria-hidden="true">💻</div>
+    
+    <!-- Headline clarity -->
+    <h1>Earn From Anywhere — Remote Work Made Simple</h1>
+    
+    <!-- Subheadline -->
+    <h2>Trusted opportunities to build your career online with flexibility and confidence.</h2>
+    
+    <!-- Clear value bullets -->
+    <ul class="value-list" aria-label="Key benefits of remote work">
+      <li>✔ Flexible hours to fit your lifestyle</li>
+      <li>✔ Global opportunities with trusted partners</li>
+      <li>✔ Secure and proven earning methods</li>
+    </ul>
+    
+    <!-- Urgency cues -->
+    <div class="urgency">Act today — limited spots available!</div>
+    
+    <!-- Offer description -->
+    <div class="offer-description">
+      You will be redirected to one of our trusted partner offers for remote work opportunities.
+    </div>
+    
+    <p class="countdown">Redirecting in <span id="timer">6</span> seconds...</p>
+    
+    <!-- Progress bar labeling -->
+    <div class="progress-label">Preparing your opportunity…</div>
+    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress" class="progress"></div>
+    </div>
+    
+    <!-- Explicit CTA wording -->
+    <a id="cta" href="#" class="cta-button" aria-label="View remote work offers now">View Remote Work Offers (Skip Countdown)</a>
+    
+    <!-- Fallback link -->
+    <div class="fallback-link">
+      <noscript>
+        <p>JavaScript is disabled. <a id="fallback" href="#">Click here to continue</a>.</p>
+      </noscript>
+    </div>
+  </div>
+</body>
+</html>
